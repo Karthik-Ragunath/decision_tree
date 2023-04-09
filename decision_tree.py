@@ -2,12 +2,13 @@ import argparse
 import pandas as pd
 from collections import defaultdict
 import math
+from config import train_config, test_config
 
 # Global Variables
 information_gain_dict = defaultdict(lambda: defaultdict(list))
 dt_dict = dict()
 decision_tree = dict()
-MAX_DEPTH = 10
+MAX_DEPTH = 1000
 
 
 class DecisionTreeNode:
@@ -83,9 +84,7 @@ class DecisionTreeNode:
     def compute_majority_voting(self):
         """Compute majority voting."""
         counter_dict = dict(self.X[self.output_column].value_counts())
-        print("C-Dict:", counter_dict)
         max_key = max(counter_dict.items(), key = lambda k: k[1])[0]
-        print("max_key:", max_key)
         return max_key
 
     def split_node(self):
@@ -145,6 +144,9 @@ def iterate(key=None, parent=None, dt=None):
         for key, obj in dt.children.items():
             iterate(key, dt.node_val, obj)
 
+def print_tree(node):
+    pass
+
 def make_decisions(node, sample=None):
     """Make decisions during inference."""
     if node.end_val:
@@ -155,18 +157,40 @@ def make_decisions(node, sample=None):
 
 if __name__ == '__main__':
     """Main functions."""
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--cols", default=None, help="column names in order for the data.")
-    parser.add_argument("--input_data_location", required=True, help="location of the input data.")
-    parser.add_argument("--output_column", required=False, default=None, help="specify the output column name.")
-    parser.add_argument("--max_depth", required=False, default=None, help="specify max depth of the decision tree.")
+    
+    train_data_cols = None
+    train_filename = None
 
-    cols = ["Y", "cap-shape", "cap-surface", "cap-color", "bruises", "odor", "gill-attachment", "gill-spacing", "gill-size", "gill-color", "stalk-shape", "stalk-root", "stalk-surface-above-ring", "stalk-surface-below-ring", "stalk-color-above-ring", "stalk-color-below-ring", "veil-type", "veil-color", "ring-number", "ring-type", "spore-print-color", "population", "habitat"]
-    mushroom_df = pd.read_csv('data/mush_train.data', names = cols, header=None, index_col=False)
+    if train_config.get('filename', None) is not None:
+        train_filename = train_config['filename']
+    else:
+        raise 'train filename is not specified'
 
-    root = DecisionTreeNode(X=mushroom_df, depth=1, output_column='Y', max_depth=MAX_DEPTH)
+    if 'cols' in train_config:
+        train_data_cols = train_config['cols']
+    if not isinstance(train_data_cols, list):
+        raise 'Please check the data type of cols data in train_config. List data type is expected'
+
+    if train_data_cols:
+        train_df = pd.read_csv(train_filename, names = train_data_cols, header=None, index_col=False)
+    else:
+        train_df = pd.read_csv(train_filename)
+        train_data_cols = train_df.head()
+
+    output_column = train_config.get('output_column', None)
+    if output_column is None:
+        raise 'output_column name is not specified'
+
+    max_depth = train_config.get('max_depth', MAX_DEPTH)
+
+    root = DecisionTreeNode(
+        X=train_df,
+        depth=1,
+        output_column=output_column,
+        max_depth=max_depth
+    )
     root.split_node()
-    print(information_gain_dict)
+    print("Information Gain On Splits:", information_gain_dict)
 
     decision_tree = DT(root)
     decision_tree.create_dt_from_trained_data()
@@ -174,18 +198,36 @@ if __name__ == '__main__':
     node = decision_tree
     iterate(dt=node)
 
-    test_cols = ["Y", "cap-shape", "cap-surface", "cap-color", "bruises", "odor", "gill-attachment", "gill-spacing", "gill-size", "gill-color", "stalk-shape", "stalk-root", "stalk-surface-above-ring", "stalk-surface-below-ring", "stalk-color-above-ring", "stalk-color-below-ring", "veil-type", "veil-color", "ring-number", "ring-type", "spore-print-color", "population", "habitat"]
-    mushroom_test_df = pd.read_csv('data/mush_test.data', names = test_cols, header=None, index_col=False)
+    if test_config.get('filename', None) is not None:
+        test_filename = test_config['filename']
+    else:
+        raise 'test filename is not specified'
+
+    if 'cols' in test_config:
+        test_data_cols = test_config['cols']
+    if not isinstance(test_data_cols, list):
+        raise 'Please check the data type of cols data in test_config. List data type is expected'
+
+    if test_data_cols:
+        test_df = pd.read_csv('data/mush_test.data', names = test_data_cols, header=None, index_col=False)
+    else:
+        test_df = pd.read_csv(test_filename)
+        test_data_cols = test_df.head()
 
     decisions = []
-    for i in range(len(mushroom_test_df)):
-        decision = make_decisions(decision_tree, mushroom_test_df.iloc[i])
+    for i in range(len(test_df)):
+        decision = make_decisions(decision_tree, test_df.iloc[i])
         decisions.append(decision)
+
+    # NO ELSE PART: IF OUTPUT COLUMN IS NOT PRESENT SAME OUTPUT COLUMN 
+    # AS TRAIN CONFIG IS CONSIDERED
+    if test_config.get('output_column', None):
+        output_column = test_config['output_column']
 
     count = 0
     for index, decision in enumerate(decisions):
-        if decision == mushroom_test_df.iloc[index]["Y"]:
+        if decision == test_df.iloc[index][output_column]:
             count += 1
 
-    accuracy = count/ len(mushroom_test_df)
+    accuracy = count/ len(test_df)
     print("Test Accuracy:", accuracy)
