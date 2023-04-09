@@ -1,10 +1,9 @@
+import argparse
 import pandas as pd
 from collections import defaultdict
 import math
 
 # Global Variables
-cols = ["Y", "cap-shape", "cap-surface", "cap-color", "bruises", "odor", "gill-attachment", "gill-spacing", "gill-size", "gill-color", "stalk-shape", "stalk-root", "stalk-surface-above-ring", "stalk-surface-below-ring", "stalk-color-above-ring", "stalk-color-below-ring", "veil-type", "veil-color", "ring-number", "ring-type", "spore-print-color", "population", "habitat"]
-mushroom_df = pd.read_csv('data/mush_train.data', names = cols, header=None, index_col=False)
 information_gain_dict = defaultdict(lambda: defaultdict(list))
 dt_dict = dict()
 decision_tree = dict()
@@ -156,6 +155,15 @@ def make_decisions(node, sample=None):
 
 if __name__ == '__main__':
     """Main functions."""
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--cols", default=None, help="column names in order for the data.")
+    parser.add_argument("--input_data_location", required=True, help="location of the input data.")
+    parser.add_argument("--output_column", required=False, default=None, help="specify the output column name.")
+    parser.add_argument("--max_depth", required=False, default=None, help="specify max depth of the decision tree.")
+
+    cols = ["Y", "cap-shape", "cap-surface", "cap-color", "bruises", "odor", "gill-attachment", "gill-spacing", "gill-size", "gill-color", "stalk-shape", "stalk-root", "stalk-surface-above-ring", "stalk-surface-below-ring", "stalk-color-above-ring", "stalk-color-below-ring", "veil-type", "veil-color", "ring-number", "ring-type", "spore-print-color", "population", "habitat"]
+    mushroom_df = pd.read_csv('data/mush_train.data', names = cols, header=None, index_col=False)
+
     root = DecisionTreeNode(X=mushroom_df, depth=1, output_column='Y', max_depth=MAX_DEPTH)
     root.split_node()
     print(information_gain_dict)
