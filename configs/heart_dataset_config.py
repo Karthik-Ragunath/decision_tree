@@ -1,0 +1,62 @@
+# https://archive.ics.uci.edu/ml/datasets/spect+heart
+train_config = {
+    "cols": [
+        "Y", 
+        "F1", 
+        "F2", 
+        "F3", 
+        "F4", 
+        "F5", 
+        "F6", 
+        "F7", 
+        "F8", 
+        "F9", 
+        "F10", 
+        "F11", 
+        "F12", 
+        "F13", 
+        "F14", 
+        "F15", 
+        "F16", 
+        "F17", 
+        "F18", 
+        "F19", 
+        "F20", 
+        "F21", 
+        "F22"
+    ],
+    "output_column": "Y",
+    "max_depth": 100,
+    "filename": "data/heart_train.data",
+}
+
+test_config = {
+    "cols": [
+        "Y", 
+        "F1", 
+        "F2", 
+        "F3", 
+        "F4", 
+        "F5", 
+        "F6", 
+        "F7", 
+        "F8", 
+        "F9", 
+        "F10", 
+        "F11", 
+        "F12", 
+        "F13", 
+        "F14", 
+        "F15", 
+        "F16", 
+        "F17", 
+        "F18", 
+        "F19", 
+        "F20", 
+        "F21", 
+        "F22"
+    ],
+    "output_column": "Y",
+    "filename": "data/heart_test.data",
+    'output_filename': 'heart_diagnosis.csv'
+}
