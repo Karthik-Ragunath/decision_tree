@@ -26,7 +26,7 @@ train_config = {
         "F22"
     ],
     "output_column": "Y",
-    "max_depth": 100,
+    "max_depth": 10,
     "filename": "data/heart_train.data",
 }
 
