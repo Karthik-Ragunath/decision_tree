@@ -138,6 +138,7 @@ class DT:
         return
 
 def iterate(key=None, parent=None, dt=None):
+    """Iterate through decision tree."""
     if dt.end_val:
         print("Leaf Node:", "Key:", key, "Parent:", parent, "Label:", dt.end_val)
     else:
@@ -146,6 +147,7 @@ def iterate(key=None, parent=None, dt=None):
             iterate(key, dt.node_val, obj)
 
 def make_decisions(node, sample=None):
+    """Make decisions during inference."""
     if node.end_val:
         return node.end_val
     decision_tree_split_col = node.node_val
@@ -153,6 +155,7 @@ def make_decisions(node, sample=None):
     return make_decisions(next_node, sample)
 
 if __name__ == '__main__':
+    """Main functions."""
     root = DecisionTreeNode(X=mushroom_df, depth=1, output_column='Y', max_depth=MAX_DEPTH)
     root.split_node()
     print(information_gain_dict)
