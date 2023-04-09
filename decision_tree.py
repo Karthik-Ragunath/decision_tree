@@ -3,6 +3,7 @@ import pandas as pd
 from collections import defaultdict
 import math
 from config import train_config, test_config
+import queue
 
 # Global Variables
 information_gain_dict = defaultdict(lambda: defaultdict(list))
@@ -135,17 +136,32 @@ class DT:
             self.end_val = self.root.end_value
         return
 
-def iterate(key=None, parent=None, dt=None):
-    """Iterate through decision tree."""
-    if dt.end_val:
-        print("Leaf Node:", "Key:", key, "Parent:", parent, "Label:", dt.end_val)
+def print_tree(node, key=None, tab_spaces=0):
+    if node.end_val:
+        if key is None:
+            print(
+                tab_spaces * '\t' + f"predicted: {node.end_val}"
+            )
+        else:
+            print(
+                tab_spaces * '\t' + f"split_key: {key}", 
+                f"predicted: {node.end_val}"
+            )
     else:
-        print("Parent:", parent, "Key:", key, "Split Column:", dt.node_val, "Info Gain:", dt.info_gain)
-        for key, obj in dt.children.items():
-            iterate(key, dt.node_val, obj)
-
-def print_tree(node):
-    pass
+        if key is None:
+            print(
+                tab_spaces * '\t' + "Root:",
+                f"split_col: {node.node_val}",
+                f"- info gain: {node.info_gain}"
+            )
+        else:
+            print(
+                tab_spaces * '\t' + f"split_key: {key}",
+                f"split_col: {node.node_val}",
+                f"- info gain: {node.info_gain}"
+            )
+        for key, node_obj in node.children.items():
+            print_tree(node=node_obj, key=key, tab_spaces=tab_spaces + 1)
 
 def make_decisions(node, sample=None):
     """Make decisions during inference."""
@@ -190,13 +206,20 @@ if __name__ == '__main__':
         max_depth=max_depth
     )
     root.split_node()
-    print("Information Gain On Splits:", information_gain_dict)
+    
+    print("-" * 20)
+    print("Information Gain On Splits:")
+    print(information_gain_dict)
+    print("-" * 20)
 
     decision_tree = DT(root)
     decision_tree.create_dt_from_trained_data()
 
+    print()
+    print('-' * 10, 'DECISION TREE CREATED', '-'*10)
     node = decision_tree
-    iterate(dt=node)
+    print_tree(node=node)
+    print('-' * 20)
 
     if test_config.get('filename', None) is not None:
         test_filename = test_config['filename']
@@ -230,4 +253,8 @@ if __name__ == '__main__':
             count += 1
 
     accuracy = count/ len(test_df)
+
+    print()
+    print('-' * 20)
     print("Test Accuracy:", accuracy)
+    print('-' * 20)
