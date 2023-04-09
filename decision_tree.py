@@ -2,6 +2,7 @@ import pandas as pd
 from collections import defaultdict
 import math
 from config import train_config, test_config
+# from configs.heart_dataset_config import train_config, test_config
 
 # Global Variables
 information_gain_dict = defaultdict(lambda: defaultdict(list))
@@ -52,7 +53,7 @@ class DecisionTreeNode:
         for col in list(self.X.columns):
             if col != self.output_column:
                 entropy = self.information_gain(col_considered=col)
-                if not min_entropy or entropy <= min_entropy:
+                if min_entropy is None or entropy <= min_entropy:
                     min_entropy = entropy
                     min_entropy_col_name = col
         return min_entropy_col_name, min_entropy
@@ -95,9 +96,14 @@ class DecisionTreeNode:
             else:
                 total_entropy = self.compute_entropy()
                 min_entropy_col_name, min_entropy = self.find_max_info_gain_ele()
+                info_gain = self.compute_entropy() - min_entropy
+                if info_gain == 0:
+                    max_voted_class = self.compute_majority_voting()
+                    self.end_value = max_voted_class
+                    return
                 self.split_column = min_entropy_col_name
-                information_gain_dict[self.depth][min_entropy_col_name].append(self.compute_entropy() - min_entropy)
-                self.information_gain_val = self.compute_entropy() - min_entropy
+                information_gain_dict[self.depth][min_entropy_col_name].append(info_gain)
+                self.information_gain_val = info_gain
                 col_index = self.X.columns.get_loc(min_entropy_col_name)
                 children_list, attributes_split_on = self.compute_children(col_considered=min_entropy_col_name, df=self.X)
                 total_len = 0
@@ -124,7 +130,7 @@ class DT:
   
     def create_dt_from_trained_data(self):
         """Create decision tree from trained data."""
-        if not self.root.end_value:
+        if self.root.end_value is None:
             self.node_val = self.root.split_column
             self.info_gain = self.root.information_gain_val
             for key, obj in self.root.children.items():
@@ -135,7 +141,7 @@ class DT:
         return
 
 def print_tree(node, key=None, tab_spaces=0):
-    if node.end_val:
+    if node.end_val is not None:
         if key is None:
             print(
                 tab_spaces * '\t' + f"predicted: {node.end_val}"
@@ -163,7 +169,7 @@ def print_tree(node, key=None, tab_spaces=0):
 
 def make_decisions(node, sample=None):
     """Make decisions during inference."""
-    if node.end_val:
+    if node.end_val is not None:
         return node.end_val
     decision_tree_split_col = node.node_val
     next_node = node.children[sample[decision_tree_split_col]]
@@ -230,7 +236,7 @@ if __name__ == '__main__':
         raise 'Please check the data type of cols data in test_config. List data type is expected'
 
     if test_data_cols:
-        test_df = pd.read_csv('data/mush_test.data', names = test_data_cols, header=None, index_col=False)
+        test_df = pd.read_csv(test_filename, names = test_data_cols, header=None, index_col=False)
     else:
         test_df = pd.read_csv(test_filename)
         test_data_cols = test_df.head()

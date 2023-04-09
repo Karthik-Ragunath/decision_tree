@@ -25,7 +25,7 @@ train_config = {
         "habitat"
     ],
     "output_column": "Y",
-    "max_depth": 10,
+    "max_depth": 3,
     "filename": "data/mush_train.data",
 }
 
