@@ -2,7 +2,6 @@ import pandas as pd
 from collections import defaultdict
 import math
 from config import train_config, test_config
-# from configs.heart_dataset_config import train_config, test_config
 
 # Global Variables
 information_gain_dict = defaultdict(lambda: defaultdict(list))
@@ -14,7 +13,19 @@ MAX_DEPTH = 1000
 class DecisionTreeNode:
     """DecisionTreeNode."""
     def __init__(self, X=None, depth=None, output_column=None, max_depth=None):
-        """Init function."""
+        """Init function.
+        
+        Input Args
+        ==========
+        X - dataframe for the node
+        depth - current depth of the decision tree
+        output column - name of the output column in the dataframe
+        max_depth - max_depth allowed in the decision tree
+        
+        Output
+        ======
+        None
+        """
         self.X = X
         self.depth = depth
         self.children = dict()
@@ -26,7 +37,16 @@ class DecisionTreeNode:
         self.max_depth = max_depth
   
     def information_gain(self, col_considered=None):
-        """Information gain."""
+        """Information gain.
+        
+        Input Args
+        =========
+        col_considered - feature considered for computing information gain upon split.
+
+        Output
+        ======
+        entropy associated with splitting on 'col_considered' feature in dataframe.
+        """
         unique_col_values = self.X[col_considered].unique()
         count_dictionary = defaultdict(int)
         for uniq_val in unique_col_values:
@@ -47,7 +67,18 @@ class DecisionTreeNode:
         return conditional_entropy
   
     def find_max_info_gain_ele(self):
-        """Find max information gain column/feature."""
+        """Find max information gain column/feature.
+        
+        Input Args
+        ==========
+        None
+        # instance variables are accessed for computation in this method
+
+        Output
+        ======
+        min_entropy_col_name - name of the feature which gives minimum entropy when used for split.
+        min_entropy - entropy associated with "min_entropy_col_name" feature when used for split the dataframe.
+        """
         min_entropy_col_name = None
         min_entropy = None
         for col in list(self.X.columns):
@@ -59,7 +90,17 @@ class DecisionTreeNode:
         return min_entropy_col_name, min_entropy
 
     def compute_children(self, col_considered=None, df=None):
-        """Compute children."""
+        """Compute children.
+        
+        Input Args
+        ==========
+        col_considered - feature upon which dataframe 'df' is split
+
+        Output
+        ======
+        df_list - dataframe associated with child nodes when split on the column passed in the argument.
+        attributes_split_on - unique value associated with each child node when split with column passed in the argument.
+        """
         unique_vals = df[col_considered].unique()
         df_list = []
         attributes_split_on = []
@@ -72,7 +113,17 @@ class DecisionTreeNode:
         return df_list, attributes_split_on
 
     def compute_entropy(self):
-        """Compute entropy."""
+        """Compute entropy.
+        
+        Input Args
+        ==========
+        None
+        # instance variables are used in this menthod.
+
+        Output
+        ======
+        total entropy present in a particular subset of dataframe.
+        """
         total_counts = len(self.X)
         total_entropy = 0
         for unique_class in self.unique_class_outputs:
@@ -82,13 +133,34 @@ class DecisionTreeNode:
         return total_entropy
 
     def compute_majority_voting(self):
-        """Compute majority voting."""
+        """Compute majority voting.
+        
+        Input Args
+        ==========
+        None
+        # instance variables are used in this method.
+
+        Output
+        ======
+        max_key - output class label which is present with highest frequency in the dataframe.
+        """
         counter_dict = dict(self.X[self.output_column].value_counts())
         max_key = max(counter_dict.items(), key = lambda k: k[1])[0]
         return max_key
 
     def split_node(self):
-        """Split node."""
+        """Split node.
+        
+        Input Args
+        ==========
+        None
+        # instance variables are used in this method.
+
+        Output
+        ======
+        Instance variables are updated in this method.
+        # Acts as the master method in the class which calls other instance methods.
+        """
         if len(list(self.X[self.output_column].unique())) != 1 and len(self.X.columns) != 1:
             if self.depth == self.max_depth:
                 max_voted_class = self.compute_majority_voting()
@@ -120,7 +192,17 @@ class DecisionTreeNode:
 
 class DT:
     def __init__(self, root):
-        """Init function."""
+        """Init function.
+        
+        Input Args
+        ==========
+        root - decision tree node object.
+
+        Output
+        ======
+        None
+        # instance variables are initialized.
+        """
         self.children = dict()
         self.node_val = None
         self.children = dict()
@@ -129,7 +211,17 @@ class DT:
         self.info_gain = None
   
     def create_dt_from_trained_data(self):
-        """Create decision tree from trained data."""
+        """Create decision tree from trained data.
+
+        Input Args
+        ==========
+        None
+        # instance variables are used for computations.
+
+        Output
+        ======
+        instance variables are updated in this method.
+        """
         if self.root.end_value is None:
             self.node_val = self.root.split_column
             self.info_gain = self.root.information_gain_val
@@ -141,6 +233,17 @@ class DT:
         return
 
 def print_tree(node, key=None, tab_spaces=0):
+    """Print tree.
+    
+    Input Args
+    ==========
+    key - attribute associated with parent node which result in creation of current (self) subset of data in decision tree node.
+
+    Output
+    ======
+    None
+    # Tree is printed. 
+    """
     if node.end_val is not None:
         if key is None:
             print(
@@ -168,7 +271,16 @@ def print_tree(node, key=None, tab_spaces=0):
             print_tree(node=node_obj, key=key, tab_spaces=tab_spaces + 1)
 
 def make_decisions(node, sample=None):
-    """Make decisions during inference."""
+    """Make decisions during inference.
+    
+    Input Args
+    ==========
+    sample - row to be classified
+
+    Output
+    ======
+    output label determined as the result of decision tree splits.
+    """
     if node.end_val is not None:
         return node.end_val
     decision_tree_split_col = node.node_val
@@ -177,7 +289,8 @@ def make_decisions(node, sample=None):
 
 if __name__ == '__main__':
     """Main functions."""
-    
+    # ------------------------------------------------------
+    # TRAINING (CREATING DECISION TREE)
     train_data_cols = None
     train_filename = None
 
@@ -225,6 +338,11 @@ if __name__ == '__main__':
     print_tree(node=node)
     print('-' * 20)
 
+    # ------------------------------------------------------
+
+    # ------------------------------------------------------
+    # INFERENCE BASED ON DECISION TREE CREATED
+
     if test_config.get('filename', None) is not None:
         test_filename = test_config['filename']
     else:
@@ -262,3 +380,5 @@ if __name__ == '__main__':
     print('-' * 20)
     print("Test Accuracy:", accuracy)
     print('-' * 20)
+
+    # ------------------------------------------------------
