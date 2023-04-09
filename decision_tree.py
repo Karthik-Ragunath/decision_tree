@@ -1,8 +1,8 @@
 import pandas as pd
 from collections import defaultdict
 import math
-# from config import train_config, test_config
-from configs.heart_dataset_config import train_config, test_config
+from config import train_config, test_config
+# from configs.heart_dataset_config import train_config, test_config
 
 # Global Variables
 information_gain_dict = defaultdict(lambda: defaultdict(list))
