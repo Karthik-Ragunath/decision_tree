@@ -30,14 +30,16 @@ output_filename - filepath where decision tree classified file is to be stored.
 ```
 
 ### STEPS TO RUN
+```
 - __STEP 1__: Specify the config to be used for training and testing in the decision_tree.py file.
     - STEP 1 WILL BE MADE CONFIG DRIVEN IN THE NEXT COMMITS
     - EXAMPLE CODE CHANGES IN CODE:
-        - 1. from configs.mush_dataset_config import train_config, test_config
-        - 2. from configs.heart_dataset_config import train_config, test_config
+        - from configs.mush_dataset_config import train_config, test_config
+        - from configs.heart_dataset_config import train_config, test_config
 - __STEP 2__:  Run the decision_tree.py python script.
     - EXAMPLE COMMAND:
         - python decison_tree.py
+```
 
 ### SAMPLE CONFIGS
 
