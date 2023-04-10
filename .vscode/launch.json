@@ -5,10 +5,20 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "decision_tree",
+            "name": "decision_tree_information_gain",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/decision_tree.py",
+            "program": "${workspaceFolder}/decision_tree_information_gain.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args":[
+            ]
+        },
+        {
+            "name": "decision_tree_gini_index",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/decision_tree_gini_index.py",
             "console": "integratedTerminal",
             "justMyCode": true,
             "args":[

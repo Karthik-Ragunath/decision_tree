@@ -195,7 +195,7 @@ class DecisionTreeNode:
         else:
             self.end_value =  list(self.X[self.output_column].unique())[0]
 
-class DT:
+class DecisionTree:
     def __init__(self, root):
         """Init function.
         
@@ -231,7 +231,7 @@ class DT:
             self.node_val = self.root.split_column
             self.info_gain = self.root.information_gain_val
             for key, obj in self.root.children.items():
-                self.children[key] = DT(obj)
+                self.children[key] = DecisionTree(obj)
                 self.children[key].create_dt_from_trained_data()
         else:
             self.end_val = self.root.end_value
@@ -334,7 +334,7 @@ if __name__ == '__main__':
     # print(information_gain_dict)
     # print("-" * 20)
 
-    decision_tree = DT(root)
+    decision_tree = DecisionTree(root)
     decision_tree.create_dt_from_trained_data()
 
     print()
