@@ -39,13 +39,13 @@ output_filename - filepath where decision tree classified file is to be stored.
 
 ### SAMPLE TRAIN AND TEST CONFIG
 1. Configs for subset of UCI Mushroom dataset\
-https://archive.ics.uci.edu/ml/datasets/mushroom\
+https://archive.ics.uci.edu/ml/datasets/mushroom
 ```
 refer configs/mush_dataset_config.py file
 ```
 
 2. Configs for subset of UCI Heart Dataset\
-https://archive.ics.uci.edu/ml/datasets/spect+heart\
+https://archive.ics.uci.edu/ml/datasets/spect+heart
 ```
 refer configs/heart_dataset_config.py file
 ```
@@ -64,8 +64,9 @@ refer configs/heart_dataset_config.py file
 
 ## SAMPLE CONFIGS
 
-1. Subset of UCI Mushroom dataset\
-https://archive.ics.uci.edu/ml/datasets/mushroom\
+1. Config for subset of UCI Mushroom dataset\
+https://archive.ics.uci.edu/ml/datasets/mushroom
+
 dataset is added in `data` directory\
 train_data - data/mush_train.data\
 test_data - data/mush_test.data
@@ -134,8 +135,9 @@ test_config = {
 }
 ```
 
-2. Subset of UCI Heart Dataset\
-https://archive.ics.uci.edu/ml/datasets/spect+heart\
+2. Config for subset of UCI Heart Dataset\
+https://archive.ics.uci.edu/ml/datasets/spect+heart
+
 dataset is added in `data` directory\
 train_data - data/heart_train.data\
 test_data - data/heart_test.data
@@ -207,8 +209,9 @@ test_config = {
 
 ## OUTPUT GENERATED FOR THE CONFIGS ADDED ABOVE
 
-1. Subset of UCI Mushroom dataset\
-https://archive.ics.uci.edu/ml/datasets/mushroom\
+1. Output generated for subset of UCI Mushroom dataset\
+https://archive.ics.uci.edu/ml/datasets/mushroom
+
 dataset is added in `data` directory\
 train_data - data/mush_train.data\
 test_data - data/mush_test.data
@@ -240,8 +243,9 @@ Test Accuracy: 0.9944314185228605
 --------------------
 ```
 
-2. Subset of UCI Heart Dataset\
-https://archive.ics.uci.edu/ml/datasets/spect+heart\
+2. Output generated for subset of UCI Heart Dataset\
+https://archive.ics.uci.edu/ml/datasets/spect+heart
+
 dataset is added in `data` directory\
 train_data - data/heart_train.data\
 test_data - data/heart_test.data
