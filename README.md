@@ -59,7 +59,9 @@ refer configs/heart_dataset_config.py file
 
 ## STEPS TO RUN
 ```
-- STEP 1: Specify the config to be used for training and testing in the decision_tree_information_gain.py (for building decision trees which uses information gain calculated from entropy as splitting criteria) and decision_tree_gini_index.py (for building decision trees which uses gini index as splitting criteria) files.
+- STEP 1: Specify the config to be used for training and testing in the 
+        - `decision_tree_information_gain.py` (for building decision trees which uses information gain calculated from entropy as splitting criteria) 
+        - `decision_tree_gini_index.py` (for building decision trees which uses gini index as splitting criteria) files.
     - STEP 1 WILL BE MADE CONFIG DRIVEN IN THE NEXT COMMITS
     - EXAMPLE CODE CHANGES IN CODE:
         - from configs.mush_dataset_config import train_config, test_config
