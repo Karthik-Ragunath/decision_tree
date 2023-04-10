@@ -63,7 +63,7 @@ refer configs/heart_dataset_config.py file
           `decision_tree_information_gain.py` (for building decision trees which uses information gain calculated from entropy as splitting criteria)\
           `decision_tree_gini_index.py` (for building decision trees which uses gini index as splitting criteria) files.
     ```
-    - EXAMPLE CODE CHANGES IN CODE:
+    - EXAMPLE CODE CHANGES:
         - from configs.mush_dataset_config import train_config, test_config
         - from configs.heart_dataset_config import train_config, test_config
     ```
