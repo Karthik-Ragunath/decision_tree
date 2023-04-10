@@ -58,7 +58,7 @@ refer configs/heart_dataset_config.py file
 ```
 
 ## STEPS TO RUN
-```
+
 - STEP 1: Specify the config to be used for training and testing in the 
         - `decision_tree_information_gain.py` (for building decision trees which uses information gain calculated from entropy as splitting criteria) 
         - `decision_tree_gini_index.py` (for building decision trees which uses gini index as splitting criteria) files.
@@ -75,7 +75,7 @@ refer configs/heart_dataset_config.py file
         
         - For building decision tree which uses Gini-Index as splitting criteria:
           python decision_tree_gini_index.py
-```
+
 
 ## SAMPLE CONFIGS
 
