@@ -31,23 +31,23 @@ output_filename - filepath where decision tree classified file is to be stored.
 
 ### STEPS TO RUN
 ```
-- __STEP 1__: Specify the config to be used for training and testing in the decision_tree.py file.
+- STEP 1: Specify the config to be used for training and testing in the decision_tree.py file.
     - STEP 1 WILL BE MADE CONFIG DRIVEN IN THE NEXT COMMITS
     - EXAMPLE CODE CHANGES IN CODE:
         - from configs.mush_dataset_config import train_config, test_config
         - from configs.heart_dataset_config import train_config, test_config
-- __STEP 2__:  Run the decision_tree.py python script.
+- STEP 2__:  Run the decision_tree.py python script.
     - EXAMPLE COMMAND:
         - python decison_tree.py
 ```
 
 ### SAMPLE CONFIGS
 
-1. Subset of UCI Mushroom dataset
-https://archive.ics.uci.edu/ml/datasets/mushroom
-dataset is added in `data` directory
-train_data - data/mush_train.data
-test_data - data/mush_test.data
+1. Subset of UCI Mushroom dataset__
+https://archive.ics.uci.edu/ml/datasets/mushroom__
+dataset is added in `data` directory__
+train_data - data/mush_train.data__
+test_data - data/mush_test.data__
 ```
 train_config = {
     'cols': [
@@ -112,11 +112,11 @@ test_config = {
 }
 ```
 
-2. Subset of UCI Heart Dataset
-https://archive.ics.uci.edu/ml/datasets/spect+heart
-dataset is added in `data` directory
-train_data - data/heart_train.data
-test_data - data/heart_test.data
+2. Subset of UCI Heart Dataset__
+https://archive.ics.uci.edu/ml/datasets/spect+heart__
+dataset is added in `data` directory__
+train_data - data/heart_train.data__
+test_data - data/heart_test.data__
 
 ```
 # https://archive.ics.uci.edu/ml/datasets/spect+heart
@@ -184,10 +184,10 @@ test_config = {
 ```
 
 ### OUTPUT GENERATED FOR THE CONFIGS ADDED ABOVE
-1. Subset of UCI Mushroom dataset
-https://archive.ics.uci.edu/ml/datasets/mushroom
-dataset is added in `data` directory
-train_data - data/mush_train.data
+- 1. Subset of UCI Mushroom dataset
+- https://archive.ics.uci.edu/ml/datasets/mushroom
+- dataset is added in `data` directory
+- train_data - data/mush_train.data
 test_data - data/mush_test.data
 ```
 ---------- DECISION TREE CREATED ----------
