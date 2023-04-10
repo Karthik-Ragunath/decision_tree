@@ -305,3 +305,17 @@ Root: split_col: F13 - info gain: 0.1704317024641
 Test Accuracy: 0.732620320855615
 --------------------
 ```
+
+## OUTPUT FIlES
+
+The output files are written to:\
+
+1. Output generated for subset of UCI Mushroom dataset
+```
+mushroom_output.csv
+```
+
+2. Output generated for subset of UCI Heart dataset
+```
+heart_diagnosis.csv
+```
