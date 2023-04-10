@@ -308,7 +308,7 @@ Test Accuracy: 0.732620320855615
 
 ## OUTPUT FIlES
 
-The output files are written to:\
+The output files are written to:
 
 1. Output generated for subset of UCI Mushroom dataset
 ```
