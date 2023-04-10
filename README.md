@@ -47,7 +47,8 @@ output_filename - filepath where decision tree classified file is to be stored.
 https://archive.ics.uci.edu/ml/datasets/mushroom\
 dataset is added in `data` directory\
 train_data - data/mush_train.data\
-test_data - data/mush_test.data\
+test_data - data/mush_test.data
+
 ```
 train_config = {
     'cols': [
@@ -116,7 +117,7 @@ test_config = {
 https://archive.ics.uci.edu/ml/datasets/spect+heart\
 dataset is added in `data` directory\
 train_data - data/heart_train.data\
-test_data - data/heart_test.data\
+test_data - data/heart_test.data
 
 ```
 # https://archive.ics.uci.edu/ml/datasets/spect+heart
@@ -189,7 +190,8 @@ test_config = {
 https://archive.ics.uci.edu/ml/datasets/mushroom\
 dataset is added in `data` directory\
 train_data - data/mush_train.data\
-test_data - data/mush_test.data\
+test_data - data/mush_test.data
+
 ```
 ---------- DECISION TREE CREATED ----------
 Root: split_col: odor - info gain: 0.9078035498174333
@@ -221,7 +223,7 @@ Test Accuracy: 0.9944314185228605
 https://archive.ics.uci.edu/ml/datasets/spect+heart\
 dataset is added in `data` directory\
 train_data - data/heart_train.data\
-test_data - data/heart_test.data\
+test_data - data/heart_test.data
 
 ```
 ---------- DECISION TREE CREATED ----------
