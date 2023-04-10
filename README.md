@@ -1,17 +1,16 @@
 # DECISION TREE FROM SCRATCH
 
-```
-Information-Gain and Gini-Index are used as criteria for computing the best splits in decision tree.
+`Information-Gain` and `Gini-Index` are used as criteria for computing the best splits in decision tree.\
 
-For building decision tree with Information-Gain as split criteria refer the file:
-decision_tree_information_gain.py
+For building decision tree with Information-Gain as split criteria refer the file:\
+`decision_tree_information_gain.py`
 
-For building decision tree with Gini-Index as split criteria refer the file:
-decision_tree_gini_index.py
+For building decision tree with Gini-Index as split criteria refer the file:\
+`decision_tree_gini_index.py`
 
-This code is designed to work with dataset which has discrete values in its features.
+This code is designed to work with dataset which has discrete values in its features.\
 This repository supports Multi-Class classifications too.
-```
+
 
 ## REQUIREMENTS
 
