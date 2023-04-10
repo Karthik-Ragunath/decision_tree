@@ -64,8 +64,8 @@ refer configs/heart_dataset_config.py file
           `decision_tree_gini_index.py` (for building decision trees which uses gini index as splitting criteria) files.
     ```
     - EXAMPLE CODE CHANGES:
-        - from configs.mush_dataset_config import train_config, test_config
-        - from configs.heart_dataset_config import train_config, test_config
+        - from configs.mush_dataset_config import train_config, test_config # (for using mushroom data).
+        - from configs.heart_dataset_config import train_config, test_config # (for using heart diagnosis data).
     ```
 - STEP 2:\
     Run `decision_tree_information_gain.py` python script for building decision trees which uses information gain as splitting criteria.\
