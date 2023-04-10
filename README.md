@@ -29,7 +29,20 @@ filename - file path which contains test data (Required).
 output_filename - filepath where decision tree classified file is to be stored.
 ```
 
-### STEPS TO RUN
+### SAMPLE TRAIN AND TEST CONFIG
+1. Configs for subset of UCI Mushroom dataset\
+https://archive.ics.uci.edu/ml/datasets/mushroom\
+```
+configs/mush_dataset_config.py
+```
+
+2. Configs for subset of UCI Heart Dataset\
+https://archive.ics.uci.edu/ml/datasets/spect+heart\
+```
+configs/heart_dataset_config.py
+```
+
+## STEPS TO RUN
 ```
 - STEP 1: Specify the config to be used for training and testing in the decision_tree.py file.
     - STEP 1 WILL BE MADE CONFIG DRIVEN IN THE NEXT COMMITS
@@ -41,7 +54,7 @@ output_filename - filepath where decision tree classified file is to be stored.
         - python decison_tree.py
 ```
 
-### SAMPLE CONFIGS
+## SAMPLE CONFIGS
 
 1. Subset of UCI Mushroom dataset\
 https://archive.ics.uci.edu/ml/datasets/mushroom\
@@ -184,7 +197,7 @@ test_config = {
 }
 ```
 
-### OUTPUT GENERATED FOR THE CONFIGS ADDED ABOVE
+## OUTPUT GENERATED FOR THE CONFIGS ADDED ABOVE
 
 1. Subset of UCI Mushroom dataset\
 https://archive.ics.uci.edu/ml/datasets/mushroom\
