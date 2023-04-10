@@ -1,12 +1,20 @@
 # DECISION TREE FROM SCRATCH
 
+```
+Information gain is used as criteria for computing the best splits in decision tree.
+This code is designed to work with dataset which has discrete values in its features.
+This repository supports Multi-Class classifications too.
+```
+
 ## REQUIREMENTS
+
 ```
 python >= 3.6
 ```
 
 ## CONFIGS
-This code is designed to be config driven.
+
+The code is designed to be config driven.
 Configs associated with a particular dataset is to be stored in the `configs` directory
 
 ### TRAIN CONFIG
@@ -33,13 +41,13 @@ output_filename - filepath where decision tree classified file is to be stored.
 1. Configs for subset of UCI Mushroom dataset\
 https://archive.ics.uci.edu/ml/datasets/mushroom\
 ```
-configs/mush_dataset_config.py
+refer configs/mush_dataset_config.py file
 ```
 
 2. Configs for subset of UCI Heart Dataset\
 https://archive.ics.uci.edu/ml/datasets/spect+heart\
 ```
-configs/heart_dataset_config.py
+refer configs/heart_dataset_config.py file
 ```
 
 ## STEPS TO RUN
