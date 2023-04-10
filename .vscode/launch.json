@@ -13,6 +13,16 @@
             "justMyCode": true,
             "args":[
             ]
+        },
+        {
+            "name": "decision_tree_gini_index",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/decision_tree_gini_index.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args":[
+            ]
         }
     ]
 }

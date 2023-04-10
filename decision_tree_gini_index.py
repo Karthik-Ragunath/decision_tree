@@ -5,8 +5,8 @@ Author - Karthik Ragunath Ananda Kumar
 import pandas as pd
 from collections import defaultdict
 import math
-# from configs.mush_dataset_config import train_config, test_config
-from configs.heart_dataset_config import train_config, test_config
+from configs.mush_dataset_config import train_config, test_config
+# from configs.heart_dataset_config import train_config, test_config
 
 # Global Variables
 gini_index_dict = defaultdict(lambda: defaultdict(list))
@@ -65,10 +65,10 @@ class DecisionTreeNode:
             feature_gini_index = 0
             for unique_class_output in self.unique_class_outputs:
                 if col_split[uniq_val][unique_class_output] != 0:
-                    feature_gini_index += (-1 * (col_split[uniq_val][unique_class_output] / count_dictionary[uniq_val]) ** 2)
+                    feature_gini_index += (1 * (col_split[uniq_val][unique_class_output] / count_dictionary[uniq_val]) ** 2)
             gini_index = multiplication_term * (1 - feature_gini_index)
             gini_impurity_measure += gini_index
-        return gini_impurity_measure
+        return gini_impurity_measure, len(unique_col_values)
   
     def find_min_gini_index_col(self):
         """Find max information gain column/feature.
@@ -85,13 +85,20 @@ class DecisionTreeNode:
         """
         min_gini_col_name = None
         min_gini_index = None
+        min_gini_col_num_uniq_values = None
         for col in list(self.X.columns):
             if col != self.output_column:
-                gini_index = self.compute_gini_index(col_considered=col)
-                if min_gini_index is None or gini_index <= min_gini_index:
+                gini_index, num_unique_values = self.compute_gini_index(col_considered=col)
+                if min_gini_index is None or gini_index < min_gini_index:
                     min_gini_index = gini_index
                     min_gini_col_name = col
-        return min_gini_col_name, min_gini_index
+                    min_gini_col_num_uniq_values = num_unique_values
+                elif gini_index == min_gini_index:
+                    if num_unique_values > min_gini_col_num_uniq_values:
+                        min_gini_index = gini_index
+                        min_gini_col_name = col
+                        min_gini_col_num_uniq_values = num_unique_values
+        return min_gini_col_name, min_gini_index, min_gini_col_num_uniq_values
 
     def compute_children(self, col_considered=None, df=None):
         """Compute children.
@@ -150,8 +157,8 @@ class DecisionTreeNode:
                 max_voted_class = self.compute_majority_voting()
                 self.end_value = max_voted_class
             else:
-                min_gini_index_col_name, min_gini_index = self.find_min_gini_index_col()
-                if min_gini_index == 1:
+                min_gini_index_col_name, min_gini_index, min_gini_col_num_uniq_values = self.find_min_gini_index_col()
+                if min_gini_index == 0.5 or min_gini_col_num_uniq_values == 1:
                     max_voted_class = self.compute_majority_voting()
                     self.end_value = max_voted_class
                     return
@@ -241,13 +248,13 @@ def print_tree(node, key=None, tab_spaces=0):
             print(
                 tab_spaces * '\t' + "Root:",
                 f"split_col: {node.node_val}",
-                f"- info gain: {node.gini_index_val}"
+                f"- gini index: {node.gini_index_val}"
             )
         else:
             print(
                 tab_spaces * '\t' + f"split_key: {key}",
                 f"split_col: {node.node_val}",
-                f"- info gain: {node.gini_index_val}"
+                f"- gini index: {node.gini_index_val}"
             )
         for key, node_obj in node.children.items():
             print_tree(node=node_obj, key=key, tab_spaces=tab_spaces + 1)
