@@ -59,23 +59,25 @@ refer configs/heart_dataset_config.py file
 
 ## STEPS TO RUN
 
-- STEP 1: Specify the config to be used for training and testing in the 
-        - `decision_tree_information_gain.py` (for building decision trees which uses information gain calculated from entropy as splitting criteria) 
-        - `decision_tree_gini_index.py` (for building decision trees which uses gini index as splitting criteria) files.
-    - STEP 1 WILL BE MADE CONFIG DRIVEN IN THE NEXT COMMITS
+- STEP 1: Specify the config to be used for training and testing in the\
+          `decision_tree_information_gain.py` (for building decision trees which uses information gain calculated from entropy as splitting criteria)\
+          `decision_tree_gini_index.py` (for building decision trees which uses gini index as splitting criteria) files.
+    ```
     - EXAMPLE CODE CHANGES IN CODE:
         - from configs.mush_dataset_config import train_config, test_config
         - from configs.heart_dataset_config import train_config, test_config
-- STEP 2__:  
-    Run decision_tree_information_gain.py python script for building decision trees which uses information gain as splitting criteria.
-    Run decision_tree_gini_index.py python script for building decision trees which uses gini index as splitting criteria. 
+    ```
+- STEP 2:\
+    Run `decision_tree_information_gain.py` python script for building decision trees which uses information gain as splitting criteria.
+    Run `decision_tree_gini_index.py` python script for building decision trees which uses gini index as splitting criteria. 
+    ```
     - EXAMPLE COMMANDS:
         - For building decision tree which uses Information-Gain as splitting criteria:
           python decison_tree_information_gain.py
         
         - For building decision tree which uses Gini-Index as splitting criteria:
           python decision_tree_gini_index.py
-
+    ```
 
 ## SAMPLE CONFIGS
 
