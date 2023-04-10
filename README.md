@@ -112,11 +112,11 @@ test_config = {
 }
 ```
 
-2. Subset of UCI Heart Dataset__
-https://archive.ics.uci.edu/ml/datasets/spect+heart__
-dataset is added in `data` directory__
-train_data - data/heart_train.data__
-test_data - data/heart_test.data__
+2. Subset of UCI Heart Dataset\
+https://archive.ics.uci.edu/ml/datasets/spect+heart\
+dataset is added in `data` directory\
+train_data - data/heart_train.data\
+test_data - data/heart_test.data\
 
 ```
 # https://archive.ics.uci.edu/ml/datasets/spect+heart
@@ -184,11 +184,12 @@ test_config = {
 ```
 
 ### OUTPUT GENERATED FOR THE CONFIGS ADDED ABOVE
-- 1. Subset of UCI Mushroom dataset
-- https://archive.ics.uci.edu/ml/datasets/mushroom
-- dataset is added in `data` directory
-- train_data - data/mush_train.data
-test_data - data/mush_test.data
+
+1. Subset of UCI Mushroom dataset\
+https://archive.ics.uci.edu/ml/datasets/mushroom\
+dataset is added in `data` directory\
+train_data - data/mush_train.data\
+test_data - data/mush_test.data\
 ```
 ---------- DECISION TREE CREATED ----------
 Root: split_col: odor - info gain: 0.9078035498174333
@@ -216,11 +217,11 @@ Test Accuracy: 0.9944314185228605
 --------------------
 ```
 
-2. Subset of UCI Heart Dataset
-https://archive.ics.uci.edu/ml/datasets/spect+heart
-dataset is added in `data` directory
-train_data - data/heart_train.data
-test_data - data/heart_test.data
+2. Subset of UCI Heart Dataset\
+https://archive.ics.uci.edu/ml/datasets/spect+heart\
+dataset is added in `data` directory\
+train_data - data/heart_train.data\
+test_data - data/heart_test.data\
 
 ```
 ---------- DECISION TREE CREATED ----------
