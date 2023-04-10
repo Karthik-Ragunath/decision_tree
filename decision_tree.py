@@ -1,8 +1,8 @@
 import pandas as pd
 from collections import defaultdict
 import math
-from config import train_config, test_config
-# from configs.heart_dataset_config import train_config, test_config
+# from configs.mush_dataset_config import train_config, test_config
+from configs.heart_dataset_config import train_config, test_config
 
 # Global Variables
 information_gain_dict = defaultdict(lambda: defaultdict(list))
@@ -325,10 +325,10 @@ if __name__ == '__main__':
     )
     root.split_node()
     
-    print("-" * 20)
-    print("Information Gain On Splits:")
-    print(information_gain_dict)
-    print("-" * 20)
+    # print("-" * 20)
+    # print("Information Gain On Splits:")
+    # print(information_gain_dict)
+    # print("-" * 20)
 
     decision_tree = DT(root)
     decision_tree.create_dt_from_trained_data()

@@ -57,5 +57,5 @@ test_config = {
     ],
     "output_column": "Y",
     "filename": "data/mush_test.data",
-    'output_filename': 'mushroom_output.csv'
+    "output_filename": "mushroom_output.csv"
 }
