@@ -1,6 +1,6 @@
 # DECISION TREE FROM SCRATCH
 
-`Information-Gain` and `Gini-Index` are used as criteria for computing the best splits in decision tree.\
+`Information-Gain` and `Gini-Index` are used as criteria for computing the best splits in decision tree.
 
 For building decision tree with Information-Gain as split criteria refer the file:\
 `decision_tree_information_gain.py`
