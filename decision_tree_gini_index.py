@@ -71,7 +71,7 @@ class DecisionTreeNode:
         return gini_impurity_measure, len(unique_col_values)
   
     def find_min_gini_index_col(self):
-        """Find max information gain column/feature.
+        """Find the column/feature with minimum gini index.
         
         Input Args
         ==========
@@ -80,8 +80,9 @@ class DecisionTreeNode:
 
         Output
         ======
-        min_entropy_col_name - name of the feature which gives minimum entropy when used for split.
-        min_entropy - entropy associated with "min_entropy_col_name" feature when used for split the dataframe.
+        min_gini_col_name - name of the feature which gives minimum gini index when used for split.
+        min_gini_index - gini index value associated with "min_gini_col_name" feature when used for splitting the dataframe.
+        min_gini_col_num_uniq_values - numbr of unique values present in the "min_gini_col_name" feature.
         """
         min_gini_col_name = None
         min_gini_index = None
@@ -312,11 +313,6 @@ if __name__ == '__main__':
         max_depth=max_depth
     )
     root.split_node()
-    
-    # print("-" * 20)
-    # print("Information Gain On Splits:")
-    # print(information_gain_dict)
-    # print("-" * 20)
 
     decision_tree = DT(root)
     decision_tree.create_dt_from_trained_data()
