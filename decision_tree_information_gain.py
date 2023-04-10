@@ -5,8 +5,12 @@ Author - Karthik Ragunath Ananda Kumar
 import pandas as pd
 from collections import defaultdict
 import math
-# from configs.mush_dataset_config import train_config, test_config
-from configs.heart_dataset_config import train_config, test_config
+
+## for using mushroom dataset
+from configs.mush_dataset_config import train_config, test_config
+
+## for using heart dataset
+# from configs.heart_dataset_config import train_config, test_config
 
 # Global Variables
 information_gain_dict = defaultdict(lambda: defaultdict(list))
