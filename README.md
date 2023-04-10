@@ -34,7 +34,7 @@ Keys in test_config:
 cols - columns associated with the train portion of the dataset (Optional).
 output_column - column which is to be used as output column (Optional). Default - Output column name specified in train config.
 filename - file path which contains test data (Required).
-output_filename - filepath where decision tree classified file is to be stored.
+output_filename - filepath where decision tree classified file is to be stored (Optional).
 ```
 
 ### SAMPLE TRAIN AND TEST CONFIG

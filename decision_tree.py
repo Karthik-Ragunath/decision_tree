@@ -5,8 +5,8 @@ Author - Karthik Ragunath Ananda Kumar
 import pandas as pd
 from collections import defaultdict
 import math
-from configs.mush_dataset_config import train_config, test_config
-# from configs.heart_dataset_config import train_config, test_config
+# from configs.mush_dataset_config import train_config, test_config
+from configs.heart_dataset_config import train_config, test_config
 
 # Global Variables
 information_gain_dict = defaultdict(lambda: defaultdict(list))
@@ -386,4 +386,7 @@ if __name__ == '__main__':
     print("Test Accuracy:", accuracy)
     print('-' * 20)
 
+    output_file_name = test_config.get('output_filename', 'output.csv')
+    test_df['output_predicted'] = decisions
+    test_df.to_csv(f"{output_file_name}", index=False)
     # ------------------------------------------------------
