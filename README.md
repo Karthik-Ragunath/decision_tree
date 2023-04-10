@@ -43,11 +43,11 @@ output_filename - filepath where decision tree classified file is to be stored.
 
 ### SAMPLE CONFIGS
 
-1. Subset of UCI Mushroom dataset__
-https://archive.ics.uci.edu/ml/datasets/mushroom__
-dataset is added in `data` directory__
-train_data - data/mush_train.data__
-test_data - data/mush_test.data__
+1. Subset of UCI Mushroom dataset\
+https://archive.ics.uci.edu/ml/datasets/mushroom\
+dataset is added in `data` directory\
+train_data - data/mush_train.data\
+test_data - data/mush_test.data\
 ```
 train_config = {
     'cols': [
